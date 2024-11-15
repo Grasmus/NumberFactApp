@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">NumberFacts</string>
+    <string name="number_input_hint">Введіть ціле число</string>
+    <string name="button_get_fact_text">Отримати факт</string>
+    <string name="button_get_random_fact_text">Отримати факт про випадкове число</string>
+    <string name="text_view_sort_by_text">Сортувати</string>
+    <string name="error_occurred">Error occurred!</string>
+    <string name="check_network">Check your network connection</string>
+    <string name="button_text_try_again">Try again</string>
+    <string name="unknown_error">Unknown error occurred</string>
+    <string name="button_filter_text">Фільтр</string>
+    <string name="from_filter_input_hint">Нижня межа</string>
+    <string name="till_filter_input_hint">Верхня межа</string>
+    <string name="button_apply_filter_text">Застосувати фільтр</string>
+    <string name="filter_from_error_message">Верхня межа не може бути меншою за нижню</string>
+    <string name="order_by_text_number">За числом</string>
+    <string name="order_by_text_date">За датою</string>
+    <string name="order_direction_text_ascending">Зростання</string>
+    <string name="order_direction_text_descending">Спадання</string>
+</resources>
