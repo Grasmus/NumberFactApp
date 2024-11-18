@@ -17,4 +17,5 @@
     <string name="order_by_text_date">За датою</string>
     <string name="order_direction_text_ascending">Зростання</string>
     <string name="order_direction_text_descending">Спадання</string>
+    <string name="number_text_input_error">Введено некоректне число</string>
 </resources>

@@ -97,12 +97,9 @@ class MainFragment: BaseFragment() {
         }
 
         binding.mainGetNumberFactButton.setOnClickListener {
-            viewModel.getNumberFact(
-                binding.mainNumberTextInput.editableText.toString().toInt()
+            getNumberFact(
+                binding.mainNumberTextInput.editableText.toString().toIntOrNull()
             )
-
-            binding.mainNumberTextInput.editableText.clear()
-            hideKeyboard()
         }
 
         binding.mainGetRandomNumberFactButton.setOnClickListener {
@@ -229,6 +226,21 @@ class MainFragment: BaseFragment() {
                 viewModel.getFilter()?.till
             )
         }.show(parentFragmentManager, SET_FILTER_DIALOG_TAG)
+    }
+
+    private fun getNumberFact(inputNumber: Int?) {
+        inputNumber?.let { number ->
+            viewModel.getNumberFact(number)
+
+            binding.mainNumberTextInput.editableText.clear()
+            hideKeyboard()
+        } ?: run {
+            Log.wtf("MainFragment::getNumberFact",
+                "Input number was null")
+
+            binding.mainNumberTextInputLayout.isErrorEnabled = true
+            binding.mainNumberTextInputLayout.error = getString(R.string.number_text_input_error)
+        }
     }
 
     private fun navigateToDetails(number: Int, fact: String) {
