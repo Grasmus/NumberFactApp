@@ -3,6 +3,7 @@ package com.numberfacts.common.dialogs
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.CreateMethod
@@ -48,6 +49,9 @@ class SetFiltersDialogFragment: DialogFragment() {
 
         binding.setFilterTillTextInputEditText.apply {
             doAfterTextChanged {
+                binding.setFilterTillTextInputLayout.isErrorEnabled = false
+                binding.setFilterTillTextInputLayout.error = null
+
                 checkButtonEnabled()
             }
 
@@ -60,8 +64,30 @@ class SetFiltersDialogFragment: DialogFragment() {
     }
 
     private fun applyFilter() {
-        val from = binding.setFilterFromTextInputEditText.text.toString().toInt()
-        val till = binding.setFilterTillTextInputEditText.text.toString().toInt()
+        val from = binding.setFilterFromTextInputEditText.text.toString().toIntOrNull()
+        val till = binding.setFilterTillTextInputEditText.text.toString().toIntOrNull()
+
+        if (from == null) {
+            Log.wtf("SetFiltersDialogFragment::applyFilter",
+                "From filter number was null")
+
+            binding.setFilterFromTextInputLayout.isErrorEnabled = true
+            binding.setFilterFromTextInputLayout.error =
+                getString(R.string.number_text_input_error)
+
+            return
+        }
+
+        if (till == null) {
+            Log.wtf("SetFiltersDialogFragment::applyFilter",
+                "Till filter number was null")
+
+            binding.setFilterTillTextInputLayout.isErrorEnabled = true
+            binding.setFilterTillTextInputLayout.error =
+                getString(R.string.number_text_input_error)
+
+            return
+        }
 
         if (from >= till) {
             binding.setFilterFromTextInputLayout.isErrorEnabled = true
